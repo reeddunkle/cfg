@@ -19,6 +19,10 @@ If you've chosen a custom location for your Steam folder, then you know where it
 
 Restart TF2 and everything should be setup.
 
+## Key Modifiers
+
+If you want to change my key's modified (or unmodified) state, or to create a modifier that I don't use, check out this [readme](./custom/key_modifiers/README.md).
+
 ## Contributing
 
 You can always fork and edit. If you notice better ways that I could be doing things, I welcome pull requests.
