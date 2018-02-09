@@ -9,6 +9,8 @@ Current keys wired up:
 * ALT
 * MWHEELUP
 * MWHEELDOWN
+* `
+* F10
 
 If you want to use one of these keys but change the behavior, see below "[Change a current key state](#change-a-current-key-state)". If you want to wire up a new key and define its behavior, see below "[Create your own modifier states](#create-your-own-modifier-states)". If you want to create class-specific versions of key states that you've already defined, see below "[Create class-specific states](#create-class-specific-states)".
 
