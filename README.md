@@ -15,9 +15,26 @@ Navigate to your `tf` folder. If you've chosen a custom location for your Steam 
 * Windows: `C:\Program Files (x86)\Steam\steamapps\common\Team Fortress 2\tf\`
 * macOS:
 
-First you should create a backup of the `cfg` folder that's inside of this `tf` folder. Just copy and paste the folder and give it a different name. _Note that it is probably worth temporarily disabling Steam's cloud-sync also. That way none of my changes will persist if you don't like them._
+#### 1. Back up your `cfg` folder
 
-Once you've got it backed up, copy or move all of the files from this repo into your `cfg` folder. If you get warnings about any of the files already existing, choose to replace them.
+Create a backup of the `cfg` folder that's inside of this `tf` folder. To do this, copy and paste the folder, and give it a different name, e.g. "cfg BACKUP". You can call it whatever you want.
+
+In step 3 we'll put my files into the `cfg` folder, so this way you'll have a version to revert to if you ever want to go back. The `cfg` folder is pretty small; it won't hurt anything to leave your backup lingering.
+
+#### 2. Disable cloud-sync
+
+I recommend temporarily disabling Steam's cloud-sync to prevent my config from overwriting yours in case you don't like it. I think the sync is useful though, so I'd turn it back on once you're ready to commit.
+
+To disable it:
+
+1. Open Steam and navigate to your Steam Library.
+2. Right-click on TF2 and select Properties.
+3. Select the Updates tab and uncheck the Enable Steam Cloud synchronization option.
+4. Click Close.
+
+#### 3. Move my files into `cfg`
+
+To install my files, drag them into the `cfg` folder. Don't drag them into the backup folder that you created in step 1. If you get warnings about any of the files already existing, choose to replace them.
 
 Restart TF2 and everything should be setup.
 
