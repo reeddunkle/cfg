@@ -1,24 +1,24 @@
 # Key Modifiers
 
-Current keys wired up:
+There's a couple of things that need to be done for each key in order to wire it up so that it can be modified. Currently, these are the keys that are wired up:
 
-* MOUSE1
-* MOUSE2
-* MOUSE3
-* MOUSE4
-* ALT
-* MWHEELUP
-* MWHEELDOWN
-* `
-* F10
+* <kbd>MOUSE1</kbd>
+* <kbd>MOUSE2</kbd>
+* <kbd>MOUSE3</kbd>
+* <kbd>MOUSE4</kbd>
+* <kbd>ALT</kbd>
+* <kbd>MWHEELUP</kbd>
+* <kbd>MWHEELDOWN</kbd>
 
-If you want to use one of these keys but change the behavior, see below "[Change a current key state](#change-a-current-key-state)". If you want to wire up a new key and define its behavior, see below "[Create your own modifier states](#create-your-own-modifier-states)". If you want to create class-specific versions of key states that you've already defined, see below "[Create class-specific states](#create-class-specific-states)".
+These can be edited. If you want to use one of these keys but change its behavior, see below "[Change a current key state](#change-a-current-key-state)". If you want to wire up a new key and define its behavior, see below "[Create your own modifier states](#create-your-own-modifier-states)". If you want to create class-specific versions of key states that you've already defined, see below "[Create class-specific states](#create-class-specific-states)".
 
 ## Change a current key state
 
-With my setup, if I hold SHIFT and press MOUSE2 it fires `alertSniper`, which actually executes this in your Tf2 console `voicemenu 1 0; say_team There's a sniper ahead;`. Let's say you want to change <kbd>SHIFT</kbd>+<kbd>M2</kbd> to instead let your teammates know that you popped uber.
+Here's an example of how to change what <kbd>SHIFT</kbd>+<kbd>MOUSE2</kbd> does.
 
-Here's the current code:
+Right now it fires `alertSniper`, but let's pretend that instead I want it to let my teammates know that I popped uber.
+
+Here's the code I'll be changing below:
 
 ```
 # actions.cfg
@@ -28,14 +28,14 @@ alias alertSniper "voicemenu 1 0; say_team There's a sniper ahead;"
 alias shiftModifyKey_M2 "alias +M2_key alertSniper; alias -M2_key swallowAction;"
 ```
 
-### Create your new action
+### 1. Create my new action
 
 ```
 # actions.cfg
 alias alertUberPopped "say_team Get excited, it's Uber time."
 ```
 
-### Set your modifier function to use the new action
+### 2. Set the modifier function to use the new action
 
 ```
 # shift_modifiers/index.cfg
@@ -48,22 +48,22 @@ There's a known issue in Tf2 scripting where you don't want to use `bind` within
 
 When a key is bound to something without a `+/-` state, it just executes the thing that it's bound to. But when it's bound to something with a `+/-` state it fires the "`+`" action on keydown, and the "`-`" action on keyup.
 
-This is important for actions like `attack`, which continues until you let up the key. In the example above, MOUSE2 is bound to `+M2_key`, which means that on keyup it will try to execute an action called `-M2_key`. The console prints an error if that action doesn't exist.
+This is important for actions like `attack`, which continue until you let up the key. In the example above, MOUSE2 is bound to `+M2_key`, which means that on keyup it will try to execute an action called `-M2_key`. The console prints an error if that action doesn't exist.
 
 In the above example, you want MOUSE2 keydown to execute `alertUberPopped`, but that action doesn't have a "`-`" state. Rather than let the game catch my error and print to console, I just perform a cheap action. It's hacky.
 
-### Alert Uber and also Use Uber
+### Alert and Use Uber
 
-Imagine that you don't just want <kbd>SHIFT</kbd>+<kbd>M2</kbd> to alert that you popped uber, but you also want the same mouse press to actually pop the uber. I'll use the `alertUberPopped` from above, but I'll create a new action to perform the actual action that we want the key to use:
+Imagine that I want <kbd>SHIFT</kbd>+<kbd>MOUSE2</kbd> to both notify my teammates _and_ pop the uber. I'll use the `alertUberPopped` from above, but I'll create a new action to accomplish this macro:
 
 ```
 # actions.cfg
 alias alertUberPopped "say_team Get excited, it's Uber time."
-alias +uberAndAlert "+attack2; alertUberPopped;"  // <-- This is what you want MOUSE2 to do
+alias +uberAndAlert "+attack2; alertUberPopped;"  // <-- This is what I want MOUSE2 to do
 alias -uberAndAlert "-attack2;"
 ```
 
-Next you put this action in your modifier function:
+Next I put this action in the modifier function:
 
 ```
 # shift_modifiers/index.cfg
@@ -86,7 +86,7 @@ alias alertUberReady "voicemenu 1 7;"
 alias alertIncoming "voicemenu 0 1;"
 ```
 
-### Create your new reset function
+### Create a new reset function
 
 Define a new function which resets your key to its unmodified state.
 
@@ -95,14 +95,14 @@ Define a new function which resets your key to its unmodified state.
 alias resetKey_F1 "alias +F1_key alertUberReady; alias -F1_key swallowAction;"
 ```
 
-### Create your new modifier function
+### Create a new modifier function
 
 ```
 # shift_modifiers/index.cfg
 alias shiftModifyKey_F1 "alias +F1_key alertIncoming; alias -F1_key swallowAction;"
 ```
 
-### Include your new reset function in `resetKeys.cfg`
+### Include the new reset function in `resetKeys.cfg`
 
 When this file executes, it fires all of the `resetKey` functions. It's important to add your new function to this list.
 
@@ -118,7 +118,7 @@ resetKey_MWHEELDOWN
 resetKey_F1  //  <-- You add this line
 ```
 
-### Include your new modifier function in `shiftModifiyKeys.cfg`
+### Include the new modifier function in `shiftModifiyKeys.cfg`
 
 When this file executes, it fires all of the `shiftModify` functions. It's important to add your new modifier to this list.
 
@@ -134,7 +134,7 @@ shiftModifyKey_MWHEELDOWN
 shiftModifyKey_F1  //  <-- You add this line
 ```
 
-### Bind `F1` to your new key state
+### Bind `F1` to the new key state
 
 Finally, you need to bind the key to the new variable.
 
