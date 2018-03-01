@@ -221,6 +221,10 @@ Download a ZIP of this repo [here](https://github.com/reeddunkle/reed-config/arc
 
 ![Download ZIP](http://i.imgur.com/lF3GOYJ.png)
 
+1.  Unzip my config.
+1.  Delete the zip, you don't need it anymore.
+1.  Rename the config folder from `reed-config-master` to just `reed-config`.
+
 ### Install my files
 
 Navigate to your `tf` folder. If you've chosen a custom location for your Steam folder, then you know where it is. If you used the default install path, then it may be:
@@ -239,9 +243,11 @@ I recommend zipping it and e-mailing it to yourself (or uploading it somewhere) 
 
 #### 1. Remove/disable other custom configs
 
-Before you install my config, you need to remove any configs that you've previously made or installed. If you already have a custom config if your `tf/custom` folder, just remove it while you're trying mine out. If you're using custom files inside your `tf/cfg` folder, you should remove them while you're trying mine out. Since you've got your `cfg` folder backed up already, you can just delete any class-specific files you might have (e.g. `spy.cfg`) as well as your `autoexec.cfg`. (Your `autoexec.cfg` actually shouldn't get in the way of mine, but you might as well remove it to be safe.)
+Before you install my config, you need to remove any configs that you've previously made or installed. If you already have a custom config if your `tf/custom` folder, just remove it while you're trying mine out.
 
-If you're extra ambitious, you can first reset your `tf/cfg` folder to its defaults. To do this:
+If you're using custom files inside your `tf/cfg` folder, you should remove them while you're trying mine out. Since you've got your `cfg` folder backed up already, you can just delete any class-specific files you might have (e.g. `spy.cfg`) as well as your `autoexec.cfg`.
+
+This shouldn't be necessary, but if you're curious or ambitious you can reset your `tf/cfg` folder to its factory defaults:
 
 1.  Disable cloud-sync (instructions [below](https://github.com/reeddunkle/reed-config#2-optional-disable-cloud-sync)).
 1.  Delete the `cfg` folder.
@@ -266,8 +272,7 @@ To disable it:
 To install my files, open the `custom` folder that's inside of the `tf` folder. If `custom` doesn't exist, just create it.
 
 1.  Navigate into `tf/custom/`.
-1.  Find the ZIP of my config that you downloaded and drag it into `custom`.
-1.  Unzip the `reed-config` that you downloaded, and remove the ZIP; you don't need it anymore.
+1.  Move my config into here.
 
 You should now have my config located at `tf/custom/reed-config`. Restart TF2 and everything should be setup.
 
