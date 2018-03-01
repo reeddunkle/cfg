@@ -6,7 +6,7 @@ A lot of the TF2 scripts and configs out there in the wild are hacky, incomplete
 
 If you want to add a feature, you should only have to define it one place, wire it up, and know that it won't break anything else. This config is architected to make that a priority. It is easy and safe to edit my specific scripts and put yours in place.
 
-If you have a feature request and you aren't sure how to make it happen, open an [issue](https://github.com/reeddunkle/cfg/issues) and I'll try to help.
+If you have a feature request and you aren't sure how to make it happen, open an [issue](https://github.com/reeddunkle/reed-config/issues) and I'll try to help.
 
 ## Overview
 
@@ -23,7 +23,7 @@ You can edit all of the specifics.
 
 ### Shift-modifers
 
-All of my actions -- the things that I want to happen with I hold shift and press a button -- are defined in my [actions.cfg](./custom/key_modifiers/actions.cfg) file. For a more in-depth explanation of how to work with the modifiers, check out [this](./custom/key_modifiers/README.md).
+All of my actions -- the things that I want to happen with I hold shift and press a button -- are defined in my [actions.cfg](./cfg/custom/key_modifiers/actions.cfg) file. For a more in-depth explanation of how to work with the modifiers, check out [this](./cfg/custom/key_modifiers/README.md).
 
 * <kbd>SHIFT</kbd>+<kbd>MOUSE1</kbd> -- _Alert Spy_
 * <kbd>SHIFT</kbd>+<kbd>MOUSE2</kbd> -- _Alert Sniper ahead_
@@ -44,7 +44,7 @@ I define any class-specific actions in that class's `key_modifiers.cfg` file.
       <kbd>MOUSE3</kbd> -- <em>Destroy sentry and build</em>
     </li>
     <li>
-      <a href="./custom/engineer/key_modifiers.cfg">
+      <a href="./cfg/custom/engineer/key_modifiers.cfg">
         <code>key_modifiers.cfg</code>
       </a>
     </li>
@@ -58,7 +58,7 @@ I define any class-specific actions in that class's `key_modifiers.cfg` file.
       <kbd>MOUSE4</kbd> -- <em>Detonator jump</em>
     </li>
     <li>
-      <a href="./custom/pyro/key_modifiers.cfg">
+      <a href="./cfg/custom/pyro/key_modifiers.cfg">
         <code>key_modifiers.cfg</code>
       </a>
     </li>
@@ -75,7 +75,7 @@ I define any class-specific actions in that class's `key_modifiers.cfg` file.
       I don't use this anymore, so I've commented this out (by adding two slashes). If you want to use it, remove the `//` from Line 4 and Line 7.
     </li>
     <li>
-      <a href="./custom/soldier/key_modifiers.cfg">
+      <a href="./cfg/custom/soldier/key_modifiers.cfg">
         <code>key_modifiers.cfg</code>
       </a>
     </li>
@@ -89,7 +89,7 @@ I define any class-specific actions in that class's `key_modifiers.cfg` file.
       <kbd>MOUSE4</kbd> -- <em>Last diguise</em>
     </li>
     <li>
-      <a href="./custom/spy/key_modifiers.cfg">
+      <a href="./cfg/custom/spy/key_modifiers.cfg">
         <code>key_modifiers.cfg</code>
       </a>
     </li>
@@ -211,13 +211,13 @@ I also have <kbd>ALT</kbd> bound to switch to Loadout A for quick resupply.
 
 ### Game settings
 
-The [settings file](./custom/settings.cfg) runs when the game loads.
+The [settings file](./cfg/custom/settings.cfg) runs when the game loads.
 
 ## Install
 
 ### Download my files
 
-You can download a zip of this repo [here](https://github.com/reeddunkle/cfg/archive/master.zip), or by clicking the green "Clone or download" button on the top right of this repo's [homepage](https://github.com/reeddunkle/cfg).
+Download a ZIP of this repo [here](https://github.com/reeddunkle/reed-config/archive/master.zip), or by clicking the green "Clone or download" button on the top right of this page.
 
 ![Download ZIP](http://i.imgur.com/lF3GOYJ.png)
 
@@ -226,50 +226,63 @@ You can download a zip of this repo [here](https://github.com/reeddunkle/cfg/arc
 Navigate to your `tf` folder. If you've chosen a custom location for your Steam folder, then you know where it is. If you used the default install path, then it may be:
 
 * Windows: `C:\Program Files (x86)\Steam\steamapps\common\Team Fortress 2\tf\`
-* macOS: `~/Library/Application Support/Steam/SteamApps/common/team fortress 2/tf/cfg`
-* Linux: `~/.steam/steam/SteamApps/common/Team Fortress 2/tf/cfg`
+* macOS: `~/Library/Application Support/Steam/SteamApps/common/team fortress 2/tf/`
+* Linux: `~/.steam/steam/SteamApps/common/Team Fortress 2/tf/`
 
-#### 1. Back up your `cfg` folder
+#### 0. Back up your `cfg` folder
 
 Create a backup of the `cfg` folder that's inside of this `tf` folder. To do this, copy and paste the folder, and give it a different name, e.g. "cfg BACKUP". You can call it whatever you want.
 
-In step 3 we'll put my files into the `cfg` folder, so this way you'll have a version to revert to if you ever want to go back. The `cfg` folder is pretty small; it won't hurt anything to leave your backup lingering.
+The point is to have a version of your current config to revert to if you ever want to go back. This `cfg` folder is pretty small so it won't hurt anything to have an extra copy sitting around.
 
-#### 2. Disable cloud-sync
+I recommend zipping it and e-mailing it to yourself (or uploading it somewhere) so that you always have a version to refer to.
 
-I recommend temporarily disabling Steam's cloud-sync to prevent my config from overwriting yours in case you don't like it. I think the sync is useful though, so I'd turn it back on once you're ready to commit.
+#### 1. Remove/disable other custom configs
+
+Before you install my config, you need to remove any configs that you've previously made or installed. If you already have a custom config if your `tf/custom` folder, just remove it while you're trying mine out. If you're using custom files inside your `tf/cfg` folder, you should remove them while you're trying mine out. Since you've got your `cfg` folder backed up already, you can just delete any class-specific files you might have (e.g. `spy.cfg`) as well as your `autoexec.cfg`. (Your `autoexec.cfg` actually shouldn't get in the way of mine, but you might as well remove it to be safe.)
+
+If you're extra ambitious, you can first reset your `tf/cfg` folder to its defaults. To do this:
+
+1.  Disable cloud-sync (instructions [below](https://github.com/reeddunkle/reed-config#2-optional-disable-cloud-sync)).
+1.  Delete the `cfg` folder.
+1.  Remove anything in the custom folder.
+1.  In your TF2 launch options, add `-autoconfig`.
+1.  Start TF2 to restore the default config.
+1.  Close TF2 and remove `-autoconfig` from the launch options.
+
+#### 2. (Optional) Disable cloud-sync
+
+You might as well temporarily disable Steam's cloud-sync to prevent Steam from overwriting your cloud-backup version. I think the sync is useful though, so I'd turn it back on once you're ready to commit to the new config.
 
 To disable it:
 
-1. Open Steam and navigate to your Steam Library.
-2. Right-click on TF2 and select Properties.
-3. Select the Updates tab and uncheck the Enable Steam Cloud synchronization option.
-4. Click Close.
+1.  Open Steam and navigate to your Steam Library.
+1.  Right-click on TF2 and select Properties.
+1.  Select the Updates tab and uncheck the Enable Steam Cloud synchronization option.
+1.  Click Close.
 
-#### 3. Move my files into `cfg`
+#### 3. Install my files
 
-To install my files, drag them into the `cfg` folder. Don't drag them into the backup folder that you created in step 1. If you get warnings about any of the files already existing, choose to replace them.
+To install my files, open the `custom` folder that's inside of the `tf` folder. If `custom` doesn't exist, just create it.
 
-Restart TF2 and everything should be setup.
+1.  Navigate into `tf/custom/`.
+1.  Find the ZIP of my config that you downloaded and drag it into `custom`.
+1.  Unzip the `reed-config` that you downloaded, and remove the ZIP; you don't need it anymore.
+
+You should now have my config located at `tf/custom/reed-config`. Restart TF2 and everything should be setup.
 
 ## Uninstall
 
 Tried out my config but want to revert to your backup?
-Read [this](./custom/README.md).
+Read [this](./cfg/custom/README.md).
 
 ## Contributing
 
 You can always fork and edit. If you notice better ways that I could be doing things, I welcome pull requests.
 
-## Set up your own cfg repo
-
-My `.gitignore` file lists all the default files. Copy it into your `cfg/` directory. You can turn the directory into a git repo (run `git init`) and it will ignore the default files, and only add the custom files you set up.
-
-In the future, I'll add more detailed instructions for those new to GitHub.
-
 ## Thanks
 
-Thanks to the community. This scripting takes getting used to, and I'm still figuring out the nuances. I couldn't have gotten into it if y'all weren't posting your scripts.
+Thanks to the community. This scripting takes getting used to, and I'm still figuring out the nuances. I couldn't have gotten into it if you all weren't posting your scripts.
 
 ## License
 
